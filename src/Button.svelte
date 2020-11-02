@@ -28,6 +28,10 @@
     clickedOnce = true;
     randomCommand = Math.floor(Math.random() * commands.length);
     console.log(commands[randomCommand]);
+    let textToSpeech = new SpeechSynthesisUtterance(
+      `${$radio.tech}, ${commands[randomCommand].text}`
+    );
+    window.speechSynthesis.speak(textToSpeech);
   }
 </script>
 
