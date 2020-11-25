@@ -10,7 +10,7 @@
 
   // I think we can use "event forwarding" to work with events from children to parents - DA 10/16/20
   function handleClick() {
-    formComplete = !formComplete;
+    formComplete = true;
     console.log($radio.tech);
   }
 </script>
