@@ -85,7 +85,7 @@
         name="company-name"
         id="amazon"
         bind:group={$radio.tech}
-        value={'Amazon'} />
+        value={'Alexa'} />
       <label for="amazon">Amazon</label>
     </div>
     <div class="radio-wrapper">
