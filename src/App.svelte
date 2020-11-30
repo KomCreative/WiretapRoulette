@@ -1,17 +1,32 @@
 <script>
-  import { radio } from "./store.js";
+  // Stores
+  import { radio, stage, stakes, points, rolls } from "./store.js";
 
+  // Components
   import Form from "./Form.svelte";
   import Button from "./Button.svelte";
 
   let formComplete = false;
+  let buttonText = "yo!";
 
   export let appName;
 
   // I think we can use "event forwarding" to work with events from children to parents - DA 10/16/20
+  const stages = [
+    "splash",
+    "form",
+    "instructions",
+    "rollBegin",
+    "didIt",
+    "roll",
+    "gameEnd",
+  ];
+  let currentStage = 0;
+
   function handleClick() {
-    formComplete = true;
-    console.log($radio.tech);
+    currentStage < 6 ? (currentStage += 1) : (currentStage = 0);
+    $stage = stages[currentStage];
+    console.log($stage);
   }
 </script>
 
@@ -42,9 +57,16 @@
 <main>
   <h1>{appName}</h1>
 
-  {#if !formComplete}
+  {#if ($stage = 'splash')}
+    <Splash />
+  {:else if ($stage = 'form')}
     <Form on:click={handleClick} />
-  {:else}
-    <Button />
-  {/if}
+    <Button {buttonText} />
+  {:else if ($stage = 'instructions')}
+    <Instructions />
+  {:else if ($stage = 'rollBegin')}
+
+  {:else if ($stage = 'didIt')}
+
+  {:else if ($stage = 'roll')}{:else if ($stage = 'gameEnd')}{/if}
 </main>
