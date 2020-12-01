@@ -1,10 +1,11 @@
 <script>
   // Stores
-  import { radio, stage, stakes, points, rolls } from "./store.js";
-
+  import { radio, stage, stakes, points, rolls, splashTime } from "./store.js";
+  import { onMount } from "svelte";
   // Components
   import Form from "./Form.svelte";
   import Button from "./Button.svelte";
+  import Splash from "./Splash.svelte";
 
   let formComplete = false;
   let buttonText = "yo!";
@@ -21,13 +22,21 @@
     "roll",
     "gameEnd",
   ];
-  let currentStage = 0;
+  let currentStage;
 
-  function handleClick() {
+  function incrementStage() {
     currentStage < 6 ? (currentStage += 1) : (currentStage = 0);
     $stage = stages[currentStage];
-    console.log($stage);
   }
+
+  onMount(() => {
+    currentStage = 0;
+    console.log("Timeout Initiated");
+    setTimeout(() => {
+      incrementStage();
+      console.log("Timeout Ended. Stage: " + $stage);
+    }, $splashTime);
+  });
 </script>
 
 <style type="text/scss">
@@ -57,16 +66,16 @@
 <main>
   <h1>{appName}</h1>
 
-  {#if ($stage = 'splash')}
+  {#if $stage === 'splash'}
     <Splash />
-  {:else if ($stage = 'form')}
+  {:else if $stage === 'form'}
     <Form on:click={handleClick} />
     <Button {buttonText} />
-  {:else if ($stage = 'instructions')}
+  {:else if $stage === 'instructions'}
     <Instructions />
-  {:else if ($stage = 'rollBegin')}
+  {:else if $stage === 'rollBegin'}
 
-  {:else if ($stage = 'didIt')}
+  {:else if $stage === 'didIt'}
 
-  {:else if ($stage = 'roll')}{:else if ($stage = 'gameEnd')}{/if}
+  {:else if $stage === 'roll'}{:else if ($stage = 'gameEnd')}{/if}
 </main>

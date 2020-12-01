@@ -11,6 +11,8 @@ export const points = writable(0);
 
 export const rolls = writable(0);
 
+export const splashTime = readable(3000);
+
 // splash, form, instructions, rollBegin, didIt, roll, gameEnd
 export const stage = writable("splash");
 
