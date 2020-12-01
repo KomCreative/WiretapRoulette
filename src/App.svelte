@@ -22,6 +22,8 @@
     "roll",
     "gameEnd",
   ];
+
+  // Will be set in onMount()
   let currentStage;
 
   function incrementStage() {
