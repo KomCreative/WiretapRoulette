@@ -8,7 +8,6 @@
   import Splash from "./Splash.svelte";
 
   let formComplete = false;
-  let buttonText = "yo!";
 
   export let appName;
 
@@ -71,12 +70,11 @@
   {#if $stage === 'splash'}
     <Splash />
   {:else if $stage === 'form'}
-    <Form on:click={handleClick} />
-    <Button {buttonText} />
+    <Form />
   {:else if $stage === 'instructions'}
     <Instructions />
   {:else if $stage === 'rollBegin'}
-
+    <Button buttonText={['roll']} />
   {:else if $stage === 'didIt'}
 
   {:else if $stage === 'roll'}{:else if ($stage = 'gameEnd')}{/if}

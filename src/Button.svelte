@@ -7,10 +7,6 @@
 
   // Props
   export let buttonText;
-
-  // Components
-
-  let currentPhrase = "";
 </script>
 
 <style type="text/scss">
@@ -45,7 +41,16 @@
   }
 </style>
 
-<h2>{currentPhrase}</h2>
-
-<button on:click={handleClick} transition:fade> {$button.buttonText} </button>
-Press this
+{#if buttonText.length == 1}
+  <button className="btn-wide" transition:fade>{buttonText[0]}</button>
+{:else if buttonText.length == 2}
+  <button className="btn-narrow" transition:fade>{buttonText[0]}</button>
+  <button
+    className="btn-secondary btn-narrow"
+    on:click={handleClick}
+    transition:fade>{buttonText[1]}</button>
+{:else}
+  <p className="errorText">Error: Check Console.</p>
+  console.error("Button component will only accept an array of 1 or two
+  strings.")
+{/if}
