@@ -73,11 +73,14 @@
     <Splash />
   {:else if $stage === 'form'}
     <Card>
+      <!-- TODO: Implement formComplete -->
       <Form />
     </Card>
   {:else if $stage === 'instructions'}
+    <!-- TODO: Write instructions -->
     <Instructions />
   {:else if $stage === 'rollBegin'}
+    <!-- TODO: write callbacks for buttons -->
     <Button buttonText={['roll']} />
   {:else if $stage === 'didIt'}
     <Button buttonText={['roll', 'give up']} />

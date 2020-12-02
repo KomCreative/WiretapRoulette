@@ -6,6 +6,7 @@
   import { fade } from "svelte/transition";
 
   // Props
+  // TODO implement prop to accept onCLick callback functions
   export let buttonText;
 </script>
 

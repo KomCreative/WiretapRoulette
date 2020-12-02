@@ -9,6 +9,7 @@
     padding: 3rem 3rem 3rem 3rem;
     width: 35rem;
     margin: 0 auto 0 auto;
+    background-color: white;
   }
 </style>
 
