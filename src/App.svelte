@@ -6,6 +6,8 @@
   import Form from "./Form.svelte";
   import Button from "./Button.svelte";
   import Splash from "./Splash.svelte";
+  import Card from "./Card.svelte";
+  import Instructions from "./Instructions.svelte";
 
   let formComplete = false;
 
@@ -70,12 +72,18 @@
   {#if $stage === 'splash'}
     <Splash />
   {:else if $stage === 'form'}
-    <Form />
+    <Card>
+      <Form />
+    </Card>
   {:else if $stage === 'instructions'}
     <Instructions />
   {:else if $stage === 'rollBegin'}
     <Button buttonText={['roll']} />
   {:else if $stage === 'didIt'}
-
-  {:else if $stage === 'roll'}{:else if ($stage = 'gameEnd')}{/if}
+    <Button buttonText={['roll', 'give up']} />
+  {:else if $stage === 'roll'}
+    <h1>Roll</h1>
+  {:else if ($stage = 'gameEnd')}
+    <h1>GameEnd</h1>
+  {/if}
 </main>
