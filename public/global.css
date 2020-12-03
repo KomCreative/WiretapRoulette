@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;600&display=swap");
+
 html,
 body {
   position: relative;
@@ -8,4 +10,20 @@ body {
     rgba(43, 111, 187, 1) 0%,
     rgba(0, 212, 255, 1) 100%
   );
+  font-family: "Maven Pro", sans-serif;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 3rem;
+}
+
+h2 {
+  font-weight: 400;
+  color: white;
+  font-size: 2rem;
+}
+
+p {
+  font-weight: 400;
 }

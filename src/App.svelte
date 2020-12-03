@@ -46,10 +46,10 @@
   $color: #00aa4d;
 
   main {
-    text-align: center;
     padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
+    width: 35rem;
+    margin: 0 auto 0 auto;
+    padding: 5rem 5rem 0 5rem;
   }
 
   h1 {
@@ -72,6 +72,7 @@
   {#if $stage === 'splash'}
     <Splash />
   {:else if $stage === 'form'}
+    <h2>Choose your wiretap</h2>
     <Card>
       <!-- TODO: Implement formComplete -->
       <Form />
