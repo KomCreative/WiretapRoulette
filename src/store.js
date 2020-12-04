@@ -16,6 +16,8 @@ export const splashTime = readable(3000);
 // splash, form, instructions, rollBegin, didIt, roll, gameEnd
 export const stage = writable("splash");
 
+export const stageNumber = writable(0);
+
 export const buttonFunctions = readable({
     roll: () => {
         // Get the id number for the phrase from our function

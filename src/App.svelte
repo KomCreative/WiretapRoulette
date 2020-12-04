@@ -1,6 +1,14 @@
 <script>
   // Stores
-  import { radio, stage, stakes, points, rolls, splashTime } from "./store.js";
+  import {
+    stageNumber,
+    radio,
+    stage,
+    stakes,
+    points,
+    rolls,
+    splashTime,
+  } from "./store.js";
   import { onMount } from "svelte";
   // Components
   import Form from "./Form.svelte";
@@ -8,6 +16,7 @@
   import Splash from "./Splash.svelte";
   import Card from "./Card.svelte";
   import Instructions from "./Instructions.svelte";
+  import SideButton from "./SideButton.svelte";
 
   let formComplete = false;
 
@@ -28,12 +37,12 @@
   let currentStage;
 
   function incrementStage() {
-    currentStage < 6 ? (currentStage += 1) : (currentStage = 0);
-    $stage = stages[currentStage];
+    $stageNumber < 6 ? ($stageNumber += 1) : (currentStage = 0);
+    $stage = stages[$stageNumber];
   }
 
   onMount(() => {
-    currentStage = 0;
+    $stageNumber = 0;
     console.log("Timeout Initiated");
     setTimeout(() => {
       incrementStage();
@@ -72,7 +81,8 @@
   {#if $stage === 'splash'}
     <Splash />
   {:else if $stage === 'form'}
-    <h2>Choose your wiretap</h2>
+    <h2>Choose your wiretap!!!!!!!!!!</h2>
+    <SideButton backNext="next" />
     <Card>
       <!-- TODO: Implement formComplete -->
       <Form />
