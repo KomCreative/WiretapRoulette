@@ -20,8 +20,6 @@
 
   let formComplete = false;
 
-  export let appName;
-
   // I think we can use "event forwarding" to work with events from children to parents - DA 10/16/20
   const stages = [
     "splash",
@@ -76,7 +74,7 @@
 </style>
 
 <main>
-  <h1>{appName}</h1>
+  <h1>Welcome to WireTap Roulette</h1>
 
   {#if $stage === 'splash'}
     <Splash />

@@ -8,6 +8,10 @@
   // Props
   // TODO implement prop to accept onCLick callback functions
   export let buttonText;
+
+  const handleClick = () => {
+    console.log("clicked");
+  };
 </script>
 
 <style type="text/scss">
