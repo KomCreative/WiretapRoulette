@@ -1,7 +1,7 @@
 // store.js
 import { writable, readable } from 'svelte/store';
 
-export const radio = writable({
+export const techChoice = writable({
     tech: ""
 });
 
@@ -18,35 +18,7 @@ export const stage = writable("splash");
 
 export const stageNumber = writable(0);
 
-export const buttonFunctions = readable({
-    roll: () => {
-        // Get the id number for the phrase from our function
-        let chosenIdNum = getByLikelihood($phrases.phraseList);
-        // Use the id number to find the object in larger phrases object
-        let newPhraseObject = $phrases.phraseList[chosenIdNum - 1];
-    
-        // Check if it's a phrase with further options, and, if so, add further functionality.
-        if (newPhraseObject.options) {
-          let chosenOptionId = getByLikelihood(newPhraseObject.options.options);
-          let chosenOption = newPhraseObject.options.options[chosenOptionId - 1];
-          let chosenOptionValue = chosenOption.optionsString;
-    
-          let chosenActionValue = getAction(newPhraseObject.options.actions);
-    
-          let chosenPhrase = newPhraseObject.say(
-            chosenOptionValue,
-            chosenActionValue
-          );
-    
-          currentPhrase = `${$radio.tech}, ${chosenPhrase}`;
-        } else {
-          currentPhrase = `${$radio.tech}, ${newPhraseObject.say}`;
-        }
-    
-        let textToSpeech = new SpeechSynthesisUtterance(currentPhrase);
-        window.speechSynthesis.speak(textToSpeech);
-      }
-    })
+export const phrase = writable("");
 
 export const phrases = readable({
     phraseList: [

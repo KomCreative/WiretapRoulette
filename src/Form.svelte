@@ -1,5 +1,5 @@
 <script>
-  import { radio } from "./store.js";
+  import { techChoice } from "./store.js";
   import { fade } from "svelte/transition";
 </script>
 
@@ -75,7 +75,7 @@
         type="radio"
         name="company-name"
         id="google"
-        bind:group={$radio.tech}
+        bind:group={$techChoice.tech}
         value={'Hey Google'} />
       <label for="google">Google</label>
     </div>
@@ -84,7 +84,7 @@
         type="radio"
         name="company-name"
         id="amazon"
-        bind:group={$radio.tech}
+        bind:group={$techChoice.tech}
         value={'Alexa'} />
       <label for="amazon">Amazon</label>
     </div>
@@ -93,17 +93,9 @@
         type="radio"
         name="company-name"
         id="other"
-        bind:group={$radio.tech}
+        bind:group={$techChoice.tech}
         value={'The other one'} />
       <label for="other">Other?</label>
     </div>
   </div>
-  {#if $radio.tech}
-    <input
-      class="submit"
-      on:click|preventDefault
-      in:fade
-      type="submit"
-      value="Okay, done" />
-  {/if}
 </fieldset>

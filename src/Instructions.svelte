@@ -1,4 +1,7 @@
 <script>
 </script>
 
-<h1>Instructions</h1>
+<p>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae corporis
+  magni illo laboriosam amet fuga explicabo, nesciunt adipisci laborum nam.
+</p>

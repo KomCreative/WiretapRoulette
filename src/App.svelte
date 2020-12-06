@@ -2,7 +2,7 @@
   // Stores
   import {
     stageNumber,
-    radio,
+    techChoice,
     stage,
     stakes,
     points,
@@ -17,6 +17,8 @@
   import Card from "./Card.svelte";
   import Instructions from "./Instructions.svelte";
   import SideButton from "./SideButton.svelte";
+  import Phrase from "./Phrase.svelte";
+  import StakesBar from "./StakesBar.svelte";
 
   let formComplete = false;
 
@@ -34,10 +36,22 @@
   // Will be set in onMount().
   let currentStage;
 
-  function incrementStage() {
-    $stageNumber < 6 ? ($stageNumber += 1) : (currentStage = 0);
+  const incrementStage = () => {
+    $stageNumber <= 6 ? ($stageNumber += 1) : (currentStage = 0);
     $stage = stages[$stageNumber];
-  }
+  };
+
+  const decrementStage = () => {
+    $stageNumber >= 1
+      ? ($stageNumber -= 1)
+      : console.error("Stage already at 0.");
+    $stage = stages[$stageNumber];
+  };
+
+  const giveUp = () => {
+    $stageNumber = 6;
+    $stage = stages[$stageNumber];
+  };
 
   onMount(() => {
     $stageNumber = 0;
@@ -66,6 +80,10 @@
     font-weight: 100;
   }
 
+  .flex {
+    display: flex;
+  }
+
   @media (min-width: 640px) {
     main {
       max-width: none;
@@ -80,21 +98,45 @@
     <Splash />
   {:else if $stage === 'form'}
     <h2>Choose your wiretap!!!!!!!!!!</h2>
-    <SideButton backNext="next" />
+    {#if $techChoice.tech}
+      <SideButton onClick={incrementStage} backNext="next" />
+    {/if}
     <Card>
       <!-- TODO: Implement formComplete -->
       <Form />
     </Card>
   {:else if $stage === 'instructions'}
     <!-- TODO: Write instructions -->
-    <Instructions />
+    <h2>Instructions</h2>
+    <SideButton onClick={decrementStage} backNext="back" />
+    <SideButton onClick={incrementStage} backNext="next" />
+    <Card>
+      <Instructions />
+    </Card>
   {:else if $stage === 'rollBegin'}
-    <!-- TODO: write callbacks for buttons -->
-    <Button buttonText={['roll']} />
+    <h2>Click roll to begin</h2>
+    <Card>
+      <!-- TODO: write callbacks for buttons -->
+      <Button onClick={[incrementStage]} buttonText={['roll']} />
+    </Card>
   {:else if $stage === 'didIt'}
-    <Button buttonText={['roll', 'give up']} />
+    <Card>
+      <Phrase />
+      <Button
+        onClick={[incrementStage, giveUp]}
+        buttonText={['did it', 'give up']} />
+    </Card>
   {:else if $stage === 'roll'}
-    <h1>Roll</h1>
+    <h2>Roll again?</h2>
+    <Card>
+      <div class="flex">
+        <p>stakes:</p>
+        <StakesBar />
+      </div>
+      <Button
+        onClick={[decrementStage, giveUp]}
+        buttonText={['roll', 'give up']} />
+    </Card>
   {:else if ($stage = 'gameEnd')}
     <h1>GameEnd</h1>
   {/if}
