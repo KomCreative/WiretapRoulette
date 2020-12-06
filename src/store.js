@@ -5,7 +5,11 @@ export const techChoice = writable({
     tech: ""
 });
 
-export const stakes = writable(0);
+export const stakes = writable(1);
+
+export const stakesBar = writable("");
+
+export const score = writable(1);
 
 export const points = writable(0);
 

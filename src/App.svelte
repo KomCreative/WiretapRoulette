@@ -5,6 +5,7 @@
     techChoice,
     stage,
     stakes,
+    score,
     points,
     rolls,
     splashTime,
@@ -129,6 +130,7 @@
   {:else if $stage === 'roll'}
     <h2>Roll again?</h2>
     <Card>
+      <p>score: {$score}</p>
       <div class="flex">
         <p>stakes:</p>
         <StakesBar />

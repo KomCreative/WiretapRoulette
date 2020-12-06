@@ -1,7 +1,4 @@
 <script>
-  // Store
-  import { techChoice, phrases } from "./store.js";
-
   // Transitions
   import { fade } from "svelte/transition";
 

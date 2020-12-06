@@ -1,12 +1,14 @@
 <script>
-  import { phrase } from "./store.js";
-  import { phrases } from "./store.js";
-  import { techChoice } from "./store.js";
+  import { phrase, phrases, techChoice, stakes, score } from "./store.js";
 
   const getByLikelihood = (arr) => {
     let newArr = [];
     for (let i = 0; i < arr.length; i++) {
-      let printTimes = arr[i].likelihoodNumber;
+      let printTimes = Math.round($stakes / arr[i].likelihoodNumber);
+      console.log(`The phrase: ${arr[i].say} ->`);
+      console.log(`stakes: ${$stakes}`);
+      console.log(`divided by likelihood: ${arr[i].likelihoodNumber}`);
+      console.log(`equals: ${printTimes}`);
       for (let j = 0; j < printTimes; j++) {
         newArr.push(arr[i].id);
       }
@@ -24,6 +26,7 @@
   };
 
   const roll = () => {
+    console.log("roll start");
     // Get the id number for the phrase from our function
     let chosenIdNum = getByLikelihood($phrases.phraseList);
     // Use the id number to find the object in larger phrases object
@@ -50,6 +53,9 @@
     let textToSpeech = new SpeechSynthesisUtterance($phrase);
     window.speechSynthesis.speak(textToSpeech);
 
+    // Add 5 to stakes for now, we'll see
+    $stakes += 2;
+    $score += $stakes;
     console.log($phrase);
   };
 

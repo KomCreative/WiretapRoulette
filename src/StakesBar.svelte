@@ -1,5 +1,31 @@
 <script>
-  console.log("stakes bar???");
+  import { stakes, stakesBar } from "./store.js";
+
+  //   Just messing around, this can be anything
+  const addToStakesBar = () => {
+    $stakesBar += "⚡";
+    console.log($stakesBar);
+  };
+
+  addToStakesBar();
 </script>
 
-<p>|||||||||stakes bar here!|||||||</p>
+<style>
+  .stakes-container {
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    display: inline-block;
+    height: 1.25em;
+    margin: auto;
+    margin-left: 1rem;
+    width: 15rem;
+  }
+  .stakes-bar {
+    height: 100%;
+  }
+</style>
+
+<p>{$stakes}</p>
+<div class="stakes-container">
+  <div class="stakes-bar">{$stakesBar}</div>
+</div>

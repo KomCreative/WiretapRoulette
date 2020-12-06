@@ -1,6 +1,5 @@
 <script>
   import { techChoice } from "./store.js";
-  import { fade } from "svelte/transition";
 </script>
 
 <style type="text/scss">
