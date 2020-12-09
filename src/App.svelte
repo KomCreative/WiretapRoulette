@@ -68,7 +68,7 @@
   $color: #00aa4d;
 
   main {
-    padding: 1em;
+    // padding: 1em;
     width: 35rem;
     margin: 0 auto 0 auto;
     padding: 5rem 5rem 0 5rem;
@@ -105,6 +105,9 @@
     <Card>
       <!-- TODO: Implement formComplete -->
       <Form />
+      {#if $techChoice.tech}
+        <p>Click the "next" button to proceed.</p>
+      {/if}
     </Card>
   {:else if $stage === 'instructions'}
     <!-- TODO: Write instructions -->

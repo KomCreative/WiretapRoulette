@@ -11,6 +11,7 @@ body {
     rgba(0, 212, 255, 1) 100%
   );
   font-family: "Maven Pro", sans-serif;
+  margin: 0;
 }
 
 h1 {

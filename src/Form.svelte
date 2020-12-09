@@ -67,7 +67,7 @@
 </style>
 
 <fieldset>
-  <legend>Which wiretap company do you use?</legend>
+  <legend>Choose your wiretap</legend>
   <div class="radio-buttons">
     <div class="radio-wrapper">
       <input
