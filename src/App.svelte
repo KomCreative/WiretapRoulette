@@ -90,6 +90,16 @@
       max-width: none;
     }
   }
+
+  fieldset {
+    border: none;
+
+    legend {
+      color: white;
+      margin-left: 1em;
+      font-size: 1.5em;
+    }
+  }
 </style>
 
 <main>
@@ -98,25 +108,31 @@
   {#if $stage === 'splash'}
     <Splash />
   {:else if $stage === 'form'}
-    <h2>Choose your wiretap!!!!!!!!!!</h2>
+    <fieldset>
+      <legend>Choose your wiretap</legend>
+      <Card>
+        <!-- TODO: Implement formComplete -->
+        <Form formType="tech" />
+      </Card>
+    </fieldset>
+    <fieldset>
+      <legend>Choose your smart devices</legend>
+      <Card>
+        <Form formType="devices" />
+      </Card>
+    </fieldset>
     {#if $techChoice.tech}
+      <p>Click the "next" button to proceed.</p>
       <SideButton onClick={incrementStage} backNext="next" />
     {/if}
-    <Card>
-      <!-- TODO: Implement formComplete -->
-      <Form />
-      {#if $techChoice.tech}
-        <p>Click the "next" button to proceed.</p>
-      {/if}
-    </Card>
   {:else if $stage === 'instructions'}
     <!-- TODO: Write instructions -->
     <h2>Instructions</h2>
-    <SideButton onClick={decrementStage} backNext="back" />
-    <SideButton onClick={incrementStage} backNext="next" />
     <Card>
       <Instructions />
     </Card>
+    <SideButton onClick={decrementStage} backNext="back" />
+    <SideButton onClick={incrementStage} backNext="next" />
   {:else if $stage === 'rollBegin'}
     <h2>Click roll to begin</h2>
     <Card>

@@ -2,8 +2,12 @@
 import { writable, readable } from 'svelte/store';
 
 export const techChoice = writable({
-    tech: ""
+    tech: "",
+    thermostat: false,
+    tv: false,
+    lights: false
 });
+
 
 export const stakes = writable(1);
 

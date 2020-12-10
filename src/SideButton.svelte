@@ -6,7 +6,7 @@
   export let onClick;
 </script>
 
-<style>
+<style type="text/scss">
   .button-container {
     height: 100vh;
     position: fixed;
@@ -16,10 +16,18 @@
 
   .left {
     left: 0;
+
+    button::before {
+      content: "◂ ";
+    }
   }
 
   .right {
     right: 0;
+
+    button::after {
+      content: " ▸";
+    }
   }
 
   button {
@@ -33,24 +41,16 @@
     text-decoration: none;
     transition: 0.2s;
     width: 100%;
-  }
 
-  .left button::before {
-    content: "◂ ";
-  }
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+    }
 
-  .right button::after {
-    content: " ▸";
-  }
-
-  button:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    cursor: pointer;
-  }
-
-  button:focus {
-    background-color: rgba(255, 255, 255, 0.15);
-    border: 0.5em solid white;
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.15);
+      border: 0.5em solid white;
+    }
   }
 </style>
 

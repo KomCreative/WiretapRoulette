@@ -1,100 +1,95 @@
 <script>
   import { techChoice } from "./store.js";
+
+  export let formType;
+
+  if (formType === "tech") {
+    console.log("tech!");
+  }
+  if (formType === "devices") {
+    console.log("devices!");
+  }
 </script>
 
 <style type="text/scss">
-  fieldset {
-    border: none;
+  // Not sure how to best style this
+  .form-button {
+    display: flex;
+    font-size: 1.5em;
+    transition: 0.2s;
 
-    legend {
-      margin: auto;
-      font-size: 1.5em;
-    }
-
-    .radio-wrapper {
-      border: 0.25em solid white;
-      display: inline-block;
-      transition: 0.4s;
-
-      &:hover {
-        background-color: white;
-        border: 0.25em solid #00aa4d;
-        border-radius: 5em;
-      }
-
-      input {
-        height: 1em;
-        width: 1em;
-      }
-
-      label {
-        display: inline-block;
-        font-size: 1.5em;
-        padding: 1em;
-      }
-
-      label:hover {
-        cursor: pointer;
-      }
-    }
-  }
-
-  .submit {
-    background-color: #00aa4d;
-    border: 0.25em solid white;
-    border-radius: 5em;
-    color: white;
-    padding: 1em 2em;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 2em;
-    text-transform: uppercase;
-    transition-duration: 0.4s;
-
-    &:hover,
-    &:focus {
-      background-color: white;
-      border: 0.25em solid #00aa4d;
-      color: #00aa4d;
+    &:hover {
+      // border: 0.15em solid #00aa4d;
+      // border-radius: 5em;
       cursor: pointer;
     }
 
-    &:active {
-      transform: scale(0.95);
+    input {
+      &:focus {
+        border: 0.25em solid #00aa4d;
+        border-radius: 5em;
+      }
     }
   }
+
+  // Submit button replaced by sidebuttons. Research if this is accessibility issue?
+  // .submit {
+  //
+
+  //   &:hover,
+  //   &:focus {
+  //
+  //   }
+
+  //   &:active {
+  //     transform: scale(0.95);
+  //   }
+  // }
 </style>
 
-<fieldset>
-  <legend>Choose your wiretap</legend>
-  <div class="radio-buttons">
-    <div class="radio-wrapper">
-      <input
-        type="radio"
-        name="company-name"
-        id="google"
-        bind:group={$techChoice.tech}
-        value={'Hey Google'} />
-      <label for="google">Google</label>
-    </div>
-    <div class="radio-wrapper">
-      <input
-        type="radio"
-        name="company-name"
-        id="amazon"
-        bind:group={$techChoice.tech}
-        value={'Alexa'} />
-      <label for="amazon">Amazon</label>
-    </div>
-    <div class="radio-wrapper">
-      <input
-        type="radio"
-        name="company-name"
-        id="other"
-        bind:group={$techChoice.tech}
-        value={'The other one'} />
-      <label for="other">Other?</label>
-    </div>
-  </div>
-</fieldset>
+<!-- Not sure if the label and input layout is the best for accessibility or styling -->
+{#if formType === 'tech'}
+  <label class="form-button" for="google">
+    <input
+      type="radio"
+      name="company-name"
+      id="google"
+      bind:group={$techChoice.tech}
+      value={'Hey Google'} />
+    Google Home</label>
+
+  <label class="form-button" for="amazon">
+    <input
+      type="radio"
+      name="company-name"
+      id="amazon"
+      bind:group={$techChoice.tech}
+      value={'Alexa'} />
+    Amazon Echo</label>
+{/if}
+{#if formType === 'devices'}
+  <label class="form-button" for="thermostat">
+    <input
+      type="checkbox"
+      id="thermostat"
+      name="devices"
+      bind:checked={$techChoice.thermostat} />
+    Thermostat
+  </label>
+  <label class="form-button" for="tv">
+    <input
+      type="checkbox"
+      id="tv"
+      name="devices"
+      bind:checked={$techChoice.tv} />
+    TV
+  </label>
+  <label class="form-button" for="lights">
+    <input
+      type="checkbox"
+      id="lights"
+      name="devices"
+      bind:checked={$techChoice.lights} />
+    Lights
+  </label>
+{/if}
