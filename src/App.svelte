@@ -64,8 +64,71 @@
   });
 </script>
 
+<main>
+  <h1>Welcome to WireTap Roulette</h1>
+
+  {#if $stage === "splash"}
+    <Splash />
+  {:else if $stage === "form"}
+    <fieldset>
+      <legend>Choose your wiretap</legend>
+      <Card>
+        <!-- TODO: Implement formComplete -->
+        <Form formType="tech" />
+      </Card>
+    </fieldset>
+    <fieldset>
+      <legend>Choose your smart devices</legend>
+      <Card>
+        <Form formType="devices" />
+      </Card>
+    </fieldset>
+    {#if $techChoice.tech}
+      <p>Click the "next" button to proceed.</p>
+      <SideButton onClick={incrementStage} backNext="next" />
+    {/if}
+  {:else if $stage === "instructions"}
+    <!-- TODO: Write instructions -->
+    <h2>Instructions</h2>
+    <Card>
+      <Instructions />
+    </Card>
+    <SideButton onClick={decrementStage} backNext="back" />
+    <SideButton onClick={incrementStage} backNext="next" />
+  {:else if $stage === "rollBegin"}
+    <h2>Click roll to begin</h2>
+    <Card>
+      <!-- TODO: write callbacks for buttons -->
+      <Button onClick={[incrementStage]} buttonText={["roll"]} />
+    </Card>
+  {:else if $stage === "didIt"}
+    <Card>
+      <Phrase />
+      <Button
+        onClick={[incrementStage, giveUp]}
+        buttonText={["did it", "give up"]}
+      />
+    </Card>
+  {:else if $stage === "roll"}
+    <h2>Roll again?</h2>
+    <Card>
+      <p>score: {$score}</p>
+      <div class="flex">
+        <p>stakes:</p>
+        <StakesBar />
+      </div>
+      <Button
+        onClick={[decrementStage, giveUp]}
+        buttonText={["roll", "give up"]}
+      />
+    </Card>
+  {:else if ($stage = "gameEnd")}
+    <h1>GameEnd</h1>
+  {/if}
+</main>
+
 <style type="text/scss">
-  $color: #00aa4d;
+  $color: white;
 
   main {
     // padding: 1em;
@@ -101,64 +164,3 @@
     }
   }
 </style>
-
-<main>
-  <h1>Welcome to WireTap Roulette</h1>
-
-  {#if $stage === 'splash'}
-    <Splash />
-  {:else if $stage === 'form'}
-    <fieldset>
-      <legend>Choose your wiretap</legend>
-      <Card>
-        <!-- TODO: Implement formComplete -->
-        <Form formType="tech" />
-      </Card>
-    </fieldset>
-    <fieldset>
-      <legend>Choose your smart devices</legend>
-      <Card>
-        <Form formType="devices" />
-      </Card>
-    </fieldset>
-    {#if $techChoice.tech}
-      <p>Click the "next" button to proceed.</p>
-      <SideButton onClick={incrementStage} backNext="next" />
-    {/if}
-  {:else if $stage === 'instructions'}
-    <!-- TODO: Write instructions -->
-    <h2>Instructions</h2>
-    <Card>
-      <Instructions />
-    </Card>
-    <SideButton onClick={decrementStage} backNext="back" />
-    <SideButton onClick={incrementStage} backNext="next" />
-  {:else if $stage === 'rollBegin'}
-    <h2>Click roll to begin</h2>
-    <Card>
-      <!-- TODO: write callbacks for buttons -->
-      <Button onClick={[incrementStage]} buttonText={['roll']} />
-    </Card>
-  {:else if $stage === 'didIt'}
-    <Card>
-      <Phrase />
-      <Button
-        onClick={[incrementStage, giveUp]}
-        buttonText={['did it', 'give up']} />
-    </Card>
-  {:else if $stage === 'roll'}
-    <h2>Roll again?</h2>
-    <Card>
-      <p>score: {$score}</p>
-      <div class="flex">
-        <p>stakes:</p>
-        <StakesBar />
-      </div>
-      <Button
-        onClick={[decrementStage, giveUp]}
-        buttonText={['roll', 'give up']} />
-    </Card>
-  {:else if ($stage = 'gameEnd')}
-    <h1>GameEnd</h1>
-  {/if}
-</main>
