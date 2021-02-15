@@ -13,9 +13,7 @@ export const stakes = writable(1);
 
 export const stakesBar = writable("");
 
-export const score = writable(1);
-
-export const points = writable(0);
+export const score = writable(0);
 
 export const rolls = writable(0);
 

@@ -6,7 +6,6 @@
     stage,
     stakes,
     score,
-    points,
     rolls,
     splashTime,
   } from "./store.js";
@@ -20,6 +19,7 @@
   import SideButton from "./SideButton.svelte";
   import Phrase from "./Phrase.svelte";
   import StakesBar from "./StakesBar.svelte";
+  import EndGame from "./EndGame.svelte";
 
   let formComplete = false;
 
@@ -54,13 +54,19 @@
     $stage = stages[$stageNumber];
   };
 
-  onMount(() => {
+  const initiate = (splashTime) => {
     $stageNumber = 0;
+    $score = 0;
+    $stakes = 1;
     console.log("Timeout Initiated");
     setTimeout(() => {
       incrementStage();
       console.log("Timeout Ended. Stage: " + $stage);
-    }, $splashTime);
+    }, splashTime);
+  };
+
+  onMount(() => {
+    initiate($splashTime);
   });
 </script>
 
@@ -122,8 +128,11 @@
         buttonText={["roll", "give up"]}
       />
     </Card>
-  {:else if ($stage = "gameEnd")}
-    <h1>GameEnd</h1>
+  {:else if $stage === "gameEnd"}
+    <Card>
+      <EndGame points={$score} />
+      <Button buttonText={["try again"]} onClick={[() => initiate(0)]} />
+    </Card>
   {/if}
 </main>
 
