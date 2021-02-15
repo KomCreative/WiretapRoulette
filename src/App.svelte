@@ -8,6 +8,7 @@
     score,
     rolls,
     splashTime,
+    mainContentID,
   } from "./store.js";
   import { onMount } from "svelte";
   // Components
@@ -71,12 +72,13 @@
 </script>
 
 <main>
+  <a id="skipToMain" href="#{$mainContentID}">Skip to main content</a>
   <h1>Welcome to WireTap Roulette</h1>
 
   {#if $stage === "splash"}
     <Splash />
   {:else if $stage === "form"}
-    <fieldset>
+    <fieldset id={$mainContentID}>
       <legend>Choose your wiretap</legend>
       <Card>
         <!-- TODO: Implement formComplete -->
@@ -95,14 +97,14 @@
     {/if}
   {:else if $stage === "instructions"}
     <!-- TODO: Write instructions -->
-    <h2>Instructions</h2>
+    <h2 id={$mainContentID}>Instructions</h2>
     <Card>
       <Instructions />
     </Card>
     <SideButton onClick={decrementStage} backNext="back" />
     <SideButton onClick={incrementStage} backNext="next" />
   {:else if $stage === "rollBegin"}
-    <h2>Click roll to begin</h2>
+    <h2 id={$mainContentID}>Click roll to begin</h2>
     <Card>
       <!-- TODO: write callbacks for buttons -->
       <Button onClick={[incrementStage]} buttonText={["roll"]} />
@@ -116,7 +118,7 @@
       />
     </Card>
   {:else if $stage === "roll"}
-    <h2>Roll again?</h2>
+    <h2 id={$mainContentID}>Roll again?</h2>
     <Card>
       <p>score: {$score}</p>
       <div class="flex">
@@ -129,6 +131,7 @@
       />
     </Card>
   {:else if $stage === "gameEnd"}
+    <h2 id={$mainContentID}>Thanks for playing!</h2>
     <Card>
       <EndGame points={$score} />
       <Button buttonText={["try again"]} onClick={[() => initiate(0)]} />

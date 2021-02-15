@@ -19,6 +19,8 @@ export const rolls = writable(0);
 
 export const splashTime = readable(3000);
 
+export const mainContentID = readable("mainContent");
+
 // splash, form, instructions, rollBegin, didIt, roll, gameEnd
 export const stage = writable("splash");
 

@@ -1,4 +1,4 @@
 <script>
 </script>
 
-<h1>Welcome to Wiretap Roulette</h1>
+<h1 id="$mainContentID">Welcome to Wiretap Roulette</h1>
