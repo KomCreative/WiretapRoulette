@@ -34,6 +34,7 @@
     "rollBegin",
     "didIt",
     "roll",
+    "die",
     "gameEnd",
   ];
 
@@ -46,9 +47,11 @@
     $stage = stages[$stageNumber];
   };
 
-  const decrementStage = () => {
+  // TODO - add parameter to decrementStage Calls,
+  // get die working.
+  const decrementStage = (num) => {
     $stageNumber >= 1
-      ? ($stageNumber -= 1)
+      ? ($stageNumber -= num)
       : console.error("Stage already at 0.");
     $stage = stages[$stageNumber];
   };
@@ -58,15 +61,19 @@
     $stage = stages[$stageNumber];
   };
 
+  const autoAdvance = (time) => {
+    setTimeout(() => {
+      incrementStage();
+      console.log("Timeout Ended. Stage: " + $stage);
+    }, time);
+  };
+
   const initiate = (splashTime) => {
     $stageNumber = 0;
     $score = 0;
     $stakes = 1;
     console.log("Timeout Initiated");
-    setTimeout(() => {
-      incrementStage();
-      console.log("Timeout Ended. Stage: " + $stage);
-    }, splashTime);
+    autoAdvance(splashTime);
   };
 
   onMount(() => {
@@ -134,6 +141,9 @@
         buttonText={["roll", "give up"]}
       />
     </Card>
+  {:else if $stage === "die"}
+    <h2 id={$mainContentID}>Rollan</h2>
+    <Die onMount={[autoAdvance(300)]} />
   {:else if $stage === "gameEnd"}
     <h2 id={$mainContentID}>Thanks for playing!</h2>
     <Card>
