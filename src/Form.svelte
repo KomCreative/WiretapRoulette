@@ -40,33 +40,35 @@
   >
 {/if}
 {#if formType === "devices"}
-  <label class="form-button" for="thermostat">
+  <div class="form-button checkbox">
     <input
-      type="checkbox"
-      id="thermostat"
-      name="devices"
-      bind:checked={$techChoice.thermostat}
+    type="checkbox"
+    id="thermostat"
+    name="devices"
+    bind:checked={$techChoice.thermostat}
     />
-    Thermostat
-  </label>
-  <label class="form-button" for="tv">
+    <label for="thermostat">Thermostat</label>
+  </div>
+
+  <div class="form-button checkbox">
     <input
-      type="checkbox"
-      id="tv"
-      name="devices"
-      bind:checked={$techChoice.tv}
+    type="checkbox"
+    id="tv"
+    name="devices"
+    bind:checked={$techChoice.tv}
     />
-    TV
-  </label>
-  <label class="form-button" for="lights">
+    <label for="tv">TV</label>
+  </div>
+
+  <div class="form-button checkbox">
     <input
-      type="checkbox"
-      id="lights"
-      name="devices"
-      bind:checked={$techChoice.lights}
+    type="checkbox"
+    id="lights"
+    name="devices"
+    bind:checked={$techChoice.lights}
     />
-    Lights
-  </label>
+    <label for="lights">Lights</label>
+  </div>
 {/if}
 
 <style type="text/scss">
@@ -161,6 +163,89 @@
     border-radius: 50%;
     background-color: rgb(75, 75, 75);
   }
+
+  // Checkboxes 
+    .checkbox input[type="checkbox"] {
+    opacity: 0;
+  }
+
+  .checkbox label {
+    cursor: pointer;
+    left: 1em;
+    width: 100%;
+  }
+
+  .checkbox label::before{
+    content: "";
+    display: inline-block;
+    
+    height: 1.3rem;
+    width: 1.3rem;
+    
+    background-color: #eee;
+    border: solid 0.25rem rgb(211, 211, 211);
+    transition: all 0.5s; 
+
+    left: -1.5em;
+  }
+
+  .checkbox label::after {
+    content: "";
+    display: inline-block;    
+    height: .3rem;
+    width: .6rem;
+    border-left: .2rem solid;
+    border-bottom: .2rem solid;
+    
+    transform: rotate(-45deg);
+
+    margin-left: -1.3em;
+    margin-top: .2em;
+  }
+
+  .checkbox label {
+    position: relative;
+  }
+  .checkbox label::before,
+  .checkbox label::after {
+    position: absolute;
+  }
+  
+  /*Outer-box*/
+  .checkbox label::before {
+    top: 3px;
+  }
+  
+  /*Checkmark*/
+  .checkbox label::after {
+    left: 4px;
+    top: 7px;
+  }
+
+  /*Hide the checkmark by default*/
+  .checkbox input[type="checkbox"] + label::after {
+    content: none;
+  }
+  
+  /*Unhide the checkmark on the checked state and darken border*/
+  .checkbox input[type="checkbox"]:checked + label::after {
+    content: "";
+  }
+
+  .checkbox input[type="checkbox"]:checked + label::before {
+    border-color: rgb(75, 75, 75);
+  }
+
+  /*Adding focus styles on the outer-box of the fake checkbox*/
+  .checkbox input[type="checkbox"]:focus + label::before {
+    outline: red 0.1rem solid;
+    transition: 0s;
+  }
+
+  .checkbox input:hover ~ label:before {
+    background-color: rgb(225, 225, 225);
+  }
+
 
   // Submit button replaced by sidebuttons. Research if this is accessibility issue?
   // .submit {
