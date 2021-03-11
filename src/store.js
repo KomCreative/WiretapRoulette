@@ -28,7 +28,7 @@ export const stageNumber = writable(0);
 
 export const phrase = writable("");
 
-export const phrases = readable({
+export const phrases = writable({
     phraseList: [
         {
         id: 1,
