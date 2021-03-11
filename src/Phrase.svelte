@@ -6,23 +6,21 @@
     let newArr = [];
     for (let i = 0; i < arr.length; i++) {
       let printTimes = Math.round($stakes / arr[i].likelihoodNumber);
-      console.log(`The phrase: ${arr[i].say} ->`);
-      console.log(`stakes: ${$stakes}`);
-      console.log(`divided by likelihood: ${arr[i].likelihoodNumber}`);
-      console.log(`equals: ${printTimes}`);
+
       for (let j = 0; j < printTimes; j++) {
         newArr.push(arr[i].id);
       }
     }
     let randomIndex = Math.floor(Math.random() * newArr.length);
     let chosenId = newArr[randomIndex];
+
     return chosenId;
   };
 
   // If the phrase has multiple options, this function is called to get one of the actions. This is not based off of likelihood number. 
   const getAction = (arr) => {
-    console.log("get action!");
-    console.log(arr);
+    // console.log("get action!");
+    // console.log(arr);
     let randomAction = arr[Math.floor(Math.random() * arr.length)];
     return randomAction;
   };
@@ -34,6 +32,10 @@
     let chosenIdNum = getByLikelihood($phrases.phraseList);
     // Use the id number to find the object in larger phrases object
     let newPhrase = $phrases.phraseList.filter((phrase)=>(phrase.id === chosenIdNum));
+
+    // console.log($phrases);
+    // console.log(getByLikelihood($phrases.phraseList));
+    // console.log($phrases.phraseList.filter((phrase)=>(phrase.id === chosenIdNum)));
 
     // Check if it's a phrase with further options, and, if so, add further functionality. This is also based off of likelihood number and uses the same getByLikelihood function. Also calls the getAction function. 
 
@@ -63,7 +65,7 @@
             }
           
         }
-      }
+      };
 
     } else {
       $phrase = `${$techChoice.tech}, ${newPhrase[0].say}`;
@@ -77,9 +79,9 @@
     // Add 5 to stakes for now, we'll see
     $stakes += 5;
     $score += $stakes;
-    console.log($phrase);
+    // console.log($phrase);
 
-    console.log($phrases.phraseList);
+    // console.log($phrases.phraseList);
   };
 
   roll();

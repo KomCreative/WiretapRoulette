@@ -55,10 +55,7 @@
     $stage = stages[$stageNumber];
   };
 
-  const initiate = (splashTime) => {
-    $stageNumber = 0;
-    $score = 0;
-    $stakes = 1;
+  const initiate = (splashTime) => { 
     console.log("Timeout Initiated");
     setTimeout(() => {
       incrementStage();
@@ -86,7 +83,7 @@
       </Card>
     </fieldset>
     <fieldset>
-      <legend>Choose your smart devices</legend>
+      <legend>Choose your smart devices (optional)</legend>
       <Card>
         <Form formType="devices" />
       </Card>
@@ -134,7 +131,7 @@
     <h2 id={$mainContentID}>Thanks for playing!</h2>
     <Card>
       <EndGame points={$score} />
-      <Button buttonText={["try again"]} onClick={[() => initiate(0)]} />
+      <Button buttonText={["try again"]} onClick={[() => location.reload()]} />
     </Card>
   {/if}
 </main>

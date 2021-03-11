@@ -17,7 +17,8 @@ export const score = writable(0);
 
 export const rolls = writable(0);
 
-export const splashTime = readable(3000);
+// SET BACK TO 3000 BEFORE PUSHING
+export const splashTime = readable(100);
 
 export const mainContentID = readable("mainContent");
 
