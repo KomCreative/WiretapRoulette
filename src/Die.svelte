@@ -80,6 +80,8 @@
     width: 250px;
     height: 213px;
     margin: 20px auto;
+    --side-color: rgba(8, 26, 56, 0.8);
+    --dot-color: rgba(255, 255, 255, 0.6);
   }
   .fadeIn {
     opacity: 100%;
@@ -90,7 +92,7 @@
     transition: all 0.5s;
   }
   .dot {
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: var(--dot-color);
     width: 1.5rem;
     height: 1.5rem;
     border-radius: 100rem;
@@ -156,26 +158,26 @@
   }
   #side1 {
     transform: rotatex(90deg) translateX(0px) translateY(0px) translateZ(56px);
-    background-color: rgba(10, 10, 10, 0.7);
+    background-color: var(--side-color);
   }
   #side2 {
     transform: rotateY(-90deg) translateX(0px) translateY(0px) translateZ(56px);
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--side-color);
   }
   #side3 {
     transform: translateX(0px) translateY(0px) translateZ(56px);
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--side-color);
   }
   #side4 {
     transform: rotateY(90deg) translateX(0px) translateY(0px) translateZ(56px);
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--side-color);
   }
   #side5 {
     transform: rotateY(180deg) translateX(0px) translateY(0px) translateZ(56px);
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--side-color);
   }
   #side6 {
     transform: rotateX(-90deg) translateX(0px) translateY(0px) translateZ(56px);
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: var(--side-color);
   }
 </style>

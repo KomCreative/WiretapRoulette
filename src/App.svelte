@@ -148,7 +148,6 @@
       />
     </Card>
   {:else if $stage === "die"}
-    <h2 id={$mainContentID}>Rollan</h2>
     <Die onMount={[autoAdvance(3000, "didIt")]} />
   {:else if $stage === "gameEnd"}
     <h2 id={$mainContentID}>Thanks for playing!</h2>
