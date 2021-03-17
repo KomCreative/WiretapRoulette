@@ -78,9 +78,6 @@
   };
 
   const initiate = (splashTime) => {
-    $stageNumber = 0;
-    $score = 0;
-    $stakes = 1;
     console.log("Timeout Initiated");
     autoAdvance(splashTime);
   };
