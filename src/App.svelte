@@ -61,11 +61,20 @@
     $stage = stages[$stageNumber];
   };
 
-  const autoAdvance = (time) => {
-    setTimeout(() => {
-      incrementStage();
-      console.log("Timeout Ended. Stage: " + $stage);
-    }, time);
+  const autoAdvance = (time, stageName = "") => {
+    console.log(stages.indexOf(stageName));
+    if (stageName) {
+      setTimeout(() => {
+        $stageNumber = stages.indexOf(stageName);
+        $stage = stages[$stageNumber];
+        console.log("Timeout Ended. Proceeding to stage: " + $stage);
+      }, time);
+    } else {
+      setTimeout(() => {
+        incrementStage();
+        console.log("Timeout Ended. Stage: " + $stage);
+      }, time);
+    }
   };
 
   const initiate = (splashTime) => {
@@ -112,13 +121,13 @@
     <Card>
       <Instructions />
     </Card>
-    <SideButton onClick={decrementStage} backNext="back" />
+    <SideButton onClick={[() => decrementStage(1)]} backNext="back" />
     <SideButton onClick={incrementStage} backNext="next" />
   {:else if $stage === "rollBegin"}
     <h2 id={$mainContentID}>Click roll to begin</h2>
     <Card>
       <!-- TODO: write callbacks for buttons -->
-      <Button onClick={[incrementStage]} buttonText={["roll"]} />
+      <Button onClick={[() => autoAdvance(1, "die")]} buttonText={["roll"]} />
     </Card>
   {:else if $stage === "didIt"}
     <Card>
@@ -137,13 +146,13 @@
         <StakesBar />
       </div>
       <Button
-        onClick={[decrementStage, giveUp]}
+        onClick={[() => autoAdvance(1, "die"), giveUp]}
         buttonText={["roll", "give up"]}
       />
     </Card>
   {:else if $stage === "die"}
     <h2 id={$mainContentID}>Rollan</h2>
-    <Die onMount={[autoAdvance(300)]} />
+    <Die onMount={[autoAdvance(3000, "didIt")]} />
   {:else if $stage === "gameEnd"}
     <h2 id={$mainContentID}>Thanks for playing!</h2>
     <Card>
