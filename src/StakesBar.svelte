@@ -19,6 +19,7 @@
     margin: auto;
     margin-left: 1rem;
     width: 50vw;
+    max-width: 15em;
   }
   .stakes-bar {
     height: 100%;
