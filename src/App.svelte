@@ -50,6 +50,7 @@
   // TODO - add parameter to decrementStage Calls,
   // get die working.
   const decrementStage = (num) => {
+    console.log("decrement!");
     $stageNumber >= 1
       ? ($stageNumber -= num)
       : console.error("Stage already at 0.");
@@ -91,7 +92,7 @@
   <header>
     <a id="skipToMain" href="#{$mainContentID}">Skip to main content</a>
     <Speaker />
-    <h1>Welcome to WireTap Roulette</h1>
+    <h1>WireTap Roulette</h1>
   </header>
 
   {#if $stage === "splash"}
@@ -216,6 +217,10 @@
       width: 90vw;
       margin: 0 auto 0 auto;
       padding: 0 1rem 0 1rem;
+    }
+
+    header {
+      padding-top: 1em;
     }
 
     h1 {
