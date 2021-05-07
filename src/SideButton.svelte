@@ -52,6 +52,16 @@
       border: 0.5em solid white;
     }
   }
+
+    @media (max-width: 640px) {
+      .button-container {
+        border: 0.2em solid white;
+        border-radius: 0.25rem;
+        height: 5em;
+        position: relative;
+        width: 100%;
+      }
+    }
 </style>
 
 <div
