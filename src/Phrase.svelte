@@ -87,4 +87,11 @@
   roll();
 </script>
 
-<p>{$phrase}</p>
+<p class="phrase">{$phrase}</p>
+
+<style type="text/scss">
+  .phrase {
+    font-size: 2em;
+    text-align: center;
+  }
+</style>
