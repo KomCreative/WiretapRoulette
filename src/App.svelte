@@ -146,10 +146,12 @@
   {:else if $stage === "roll"}
     <h2 id={$mainContentID}>Roll again?</h2>
     <Card>
-      <p>score: {$score}</p>
-      <div class="flex">
-        <p>stakes:</p>
-        <StakesBar />
+      <div class="score-and-stakes flex">
+        <p class="score">Score: {$score}</p>
+        <div class="stakes-container flex">
+          <p>Stakes:</p>
+          <StakesBar />
+        </div>
       </div>
       <Button
         onClick={[() => autoAdvance(1, "die"), giveUp]}
@@ -212,6 +214,19 @@
     }
   }
 
+  .score-and-stakes {
+    flex-direction: column;
+  }
+
+  .score {
+    font-size: 2.5em;
+    margin: 0 auto;
+  }
+
+  .stakes-container {
+    font-size: 1.5em;
+    margin: 0 auto;
+  }
   @media (max-width: 640px) {
     main {
       width: 90vw;

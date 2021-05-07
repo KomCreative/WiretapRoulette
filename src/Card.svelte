@@ -1,7 +1,7 @@
 <script>
 </script>
 
-<style>
+<style type="text/scss">
   .card {
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.09),
       0px 0px 15px -6px rgba(0, 0, 0, 0.31);
@@ -10,10 +10,18 @@
     width: 35rem;
     margin: 0 auto 0 auto;
     background-color: white;
+
+    &:last-child {
+      margin-bottom: 5em;
+    }
   }
   @media (max-width: 640px) {
     .card {
       width: 75vw;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 </style>

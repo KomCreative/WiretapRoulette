@@ -18,14 +18,13 @@
     height: 1.25em;
     margin: auto;
     margin-left: 1rem;
-    width: 15rem;
+    width: 50vw;
   }
   .stakes-bar {
     height: 100%;
   }
 </style>
 
-<p>{$stakes}</p>
 <div class="stakes-container">
   <div class="stakes-bar">{$stakesBar}</div>
 </div>
