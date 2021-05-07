@@ -10,10 +10,6 @@
     width: 35rem;
     margin: 0 auto 0 auto;
     background-color: white;
-
-    &:last-child {
-      margin-bottom: 5em;
-    }
   }
   @media (max-width: 640px) {
     .card {
