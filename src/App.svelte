@@ -88,9 +88,11 @@
 </script>
 
 <main>
-  <a id="skipToMain" href="#{$mainContentID}">Skip to main content</a>
-  <Speaker />
-  <h1>Welcome to WireTap Roulette</h1>
+  <header>
+    <a id="skipToMain" href="#{$mainContentID}">Skip to main content</a>
+    <Speaker />
+    <h1>Welcome to WireTap Roulette</h1>
+  </header>
 
   {#if $stage === "splash"}
     <Splash />
@@ -100,17 +102,21 @@
       <Card>
         <!-- TODO: Implement formComplete -->
         <Form formType="tech" />
+        {#if $techChoice.tech}
+          <p>Click the "next" button to proceed.</p>
+        {/if}
       </Card>
     </fieldset>
     <fieldset>
-      <legend>Choose your smart devices</legend>
+      <legend>Choose your smart devices (optional)</legend>
       <Card>
         <Form formType="devices" />
       </Card>
     </fieldset>
     {#if $techChoice.tech}
-      <p>Click the "next" button to proceed.</p>
-      <SideButton onClick={incrementStage} backNext="next" />
+      <div class="side-buttons">
+        <SideButton onClick={incrementStage} backNext="next" />
+      </div>
     {/if}
   {:else if $stage === "instructions"}
     <!-- TODO: Write instructions -->
@@ -118,8 +124,10 @@
     <Card>
       <Instructions />
     </Card>
-    <SideButton onClick={[() => decrementStage(1)]} backNext="back" />
-    <SideButton onClick={incrementStage} backNext="next" />
+    <div class="side-buttons">
+      <SideButton onClick={[() => decrementStage(1)]} backNext="back" />
+      <SideButton onClick={incrementStage} backNext="next" />
+    </div>
   {:else if $stage === "rollBegin"}
     <h2 id={$mainContentID}>Click roll to begin</h2>
     <Card>
@@ -167,7 +175,6 @@
     margin: 0 auto 0 auto;
     padding: 5rem 5rem 0 5rem;
   }
-
   h1 {
     color: $color;
     text-transform: uppercase;
@@ -179,12 +186,6 @@
     display: flex;
   }
 
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  }
-
   fieldset {
     border: none;
 
@@ -192,6 +193,24 @@
       color: white;
       margin-left: 1em;
       font-size: 1.5em;
+    }
+  }
+
+  @media (max-width: 640px) {
+    main {
+      width: 90vw;
+      margin: 0 auto 0 auto;
+      padding: 0 1rem 0 1rem;
+    }
+
+    h1 {
+      font-size: 3em;
+    }
+
+    .side-buttons {
+      display: flex;
+      gap: .5em;
+      margin: 1em auto;
     }
   }
 </style>

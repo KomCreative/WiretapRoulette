@@ -11,6 +11,11 @@
     margin: 0 auto 0 auto;
     background-color: white;
   }
+  @media (max-width: 640px) {
+    .card {
+      width: 75vw;
+    }
+  }
 </style>
 
 <div class="card">
