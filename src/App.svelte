@@ -175,6 +175,21 @@
     margin: 0 auto 0 auto;
     padding: 5rem 5rem 0 5rem;
   }
+
+  #skipToMain {
+    background:  $color;
+    height: 30px;
+    left: 50%;
+    padding: 8px;
+    position: absolute;
+    transform: translateY(-1000%);
+    transition: transform 0.3s;
+  }
+
+  #skipToMain:focus {
+    transform: translateY(0%);
+  }
+
   h1 {
     color: $color;
     text-transform: uppercase;
