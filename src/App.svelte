@@ -49,10 +49,9 @@
 
   // TODO - add parameter to decrementStage Calls,
   // get die working.
-  const decrementStage = (num) => {
-    console.log("decrement!");
+  const decrementStage = () => {
     $stageNumber >= 1
-      ? ($stageNumber -= num)
+      ? ($stageNumber -= 1)
       : console.error("Stage already at 0.");
     $stage = stages[$stageNumber];
   };
@@ -126,7 +125,7 @@
       <Instructions />
     </Card>
     <div class="side-buttons">
-      <SideButton onClick={[() => decrementStage(1)]} backNext="back" />
+      <SideButton onClick={decrementStage} backNext="back" />
       <SideButton onClick={incrementStage} backNext="next" />
     </div>
   {:else if $stage === "rollBegin"}
